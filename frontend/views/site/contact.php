@@ -2,7 +2,7 @@
 
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
-/** @var \frontend\models\ContactForm $model */
+/** @var \common\models\Order $model */
 
 use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
@@ -32,8 +32,6 @@ $this->title = 'Зв’язок та замовлення';
                     <span class="badge bg-info text-white">Viber</span>
                 </div>
 
-
-
                 <div class="mb-4 pt-3 border-top">
                     <p class="text-muted mb-1 small text-uppercase fw-bold">Графік роботи:</p>
                     <p class="fs-5">Пн-Пт: 09:00 — 18:00</p>
@@ -41,7 +39,7 @@ $this->title = 'Зв’язок та замовлення';
 
                 <div class="p-3 bg-white rounded-3 border-start border-warning border-4 shadow-sm mt-auto">
                     <p class="small mb-0 text-muted">
-                        <strong>💡 Порада:</strong> Якщо ви замовляєте книгу в подарунок, вкажіть це в коментарі — ми додамо авторську листівку від Тетяни Борисової!
+                        <strong>💡 Порада:</strong> Якщо ви замовляєте книгу в подарунок, вкажіть це в коментарі — ми додамо авторську листівку з привітанням для дитини!
                     </p>
                 </div>
             </div>
@@ -64,14 +62,14 @@ $this->title = 'Зв’язок та замовлення';
                         ])->label('Як до вас звертатися?') ?>
                     </div>
                     <div class="col-md-6">
-                        <?= $form->field($model, 'email')->textInput([
+                        <?= $form->field($model, 'phone')->textInput([
                             'placeholder' => '+380...',
                             'class' => 'form-control form-control-lg rounded-3'
                         ])->label('Номер телефону') ?>
                     </div>
                 </div>
 
-                <?= $form->field($model, 'body')->textarea([
+                <?= $form->field($model, 'comment')->textarea([
                     'rows' => 4,
                     'placeholder' => 'Наприклад: Кількість книг, адреса доставки (Нова Пошта) або ваші запитання...',
                     'class' => 'form-control form-control-lg rounded-3'

@@ -164,3 +164,33 @@ a.desc:after {
 .breadcrumb-item.active {
     color: #2c3e50;
 }
+/* --- Специфічний блок "Слово автора" --- */
+.author-quote-block {
+    background-color: #3498db !important; /* Фірмовий синій */
+    border-left: 10px solid #f1c40f !important; /* Жовтий акцент зліва */
+    color: #ffffff !important;
+    transition: transform 0.3s ease;
+    border-radius: 2rem; /* Округлення як у інших блоків */
+}
+
+.author-quote-block:hover {
+    transform: translateY(-5px);
+}
+
+.author-quote-block h2 {
+    color: #f1c40f !important; /* Жовтий заголовок */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.author-quote-block .blockquote-footer {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.author-quote-block .blockquote-footer cite {
+    color: #f1c40f !important;
+}
+
+.author-quote-block .display-1 {
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}

@@ -2,6 +2,7 @@
 
 /** @var yii\web\View $this */
 /** @var yii\widgets\ActiveForm $form */
+/** @var common\models\Order $model */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -12,7 +13,7 @@ $this->title = 'Замовити книгу — Ріко-Розмовляйко'
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <h1 class="display-4 fw-bold mb-4">🛍️ Замовити книгу "Ріко-Розмовляйко"</h1>
+                <h1 class="display-4 fw-bold mb-4">🛍️ Замовити книгу <br> "Ріко-Розмовляйко"</h1>
 
                 <div class="alert alert-warning border-0 shadow-sm py-4 mb-5 rounded-4">
                     <h2 class="h4 fw-bold text-dark">⚠️ Увага! Обмежений тираж</h2>
@@ -28,9 +29,8 @@ $this->title = 'Замовити книгу — Ріко-Розмовляйко'
                         <h5 class="fw-bold mb-3">📞 Прямий зв'язок:</h5>
 
                         <div class="mb-4">
-                            <p class="mb-1 text-muted small">Телефон та Viber:</p>
+                            <p class="mb-1 text-muted small">Телефон та  <span class="badge bg-info shadow-sm">Viber</span>:</p>
                             <a href="tel:+380632140037" class="fs-4 fw-bold text-decoration-none text-dark d-block mb-1">+38 (063) 214-00-37</a>
-                            <span class="badge bg-info shadow-sm">Viber</span>
                         </div>
 
                         <div class="mb-3">
@@ -46,19 +46,35 @@ $this->title = 'Замовити книгу — Ріко-Розмовляйко'
                         <p class="text-muted small">Залиште ваші дані, і ми перетелефонуємо для уточнення адреси доставки:</p>
 
                         <div class="order-form bg-light p-4 rounded-4 shadow-sm border">
-                            <?php $form = ActiveForm::begin(['id' => 'order-phone-form']); ?>
+                            <?php $form = ActiveForm::begin([
+                                'id' => 'order-phone-form',
+                                'enableClientValidation' => true,
+                                'options' => ['autocomplete' => 'on']
+                            ]); ?>
 
-                            <div class="mb-3">
-                                <label class="form-label small fw-bold">Ваше ім'я</label>
-                                <input type="text" class="form-control form-control-lg rounded-3" placeholder="Олександр" required>
+                            <?= $form->field($model, 'name')->textInput([
+                                'placeholder' => 'Олена',
+                                'class' => 'form-control form-control-lg rounded-3'
+                            ])->label('Ваше ім\'я', ['class' => 'form-label small fw-bold']) ?>
+
+                            <?= $form->field($model, 'phone')->textInput([
+                                'placeholder' => '+380...',
+                                'type' => 'tel',
+                                'class' => 'form-control form-control-lg rounded-3'
+                            ])->label('Ваш номер телефону', ['class' => 'form-label small fw-bold']) ?>
+
+                            <?= $form->field($model, 'comment')->textarea([
+                                'placeholder' => 'Адреса доставки або побажання...',
+                                'rows' => 2,
+                                'class' => 'form-control rounded-3'
+                            ])->label('Коментар (необов\'язково)', ['class' => 'form-label small fw-bold']) ?>
+
+                            <div class="form-group mt-3">
+                                <?= Html::submitButton('Чекаю на дзвінок 🐾', [
+                                    'class' => 'btn btn-primary btn-lg w-100 shadow rounded-pill fw-bold', // Змінено з btn-success на btn-primary
+                                    'name' => 'order-button'
+                                ]) ?>
                             </div>
-
-                            <div class="mb-3">
-                                <label class="form-label small fw-bold">Ваш номер телефону</label>
-                                <input type="tel" class="form-control form-control-lg rounded-3" placeholder="+380..." required>
-                            </div>
-
-                            <?= Html::submitButton('Чекаю на дзвінок 🐾', ['class' => 'btn btn-success btn-lg w-100 shadow rounded-pill fw-bold mt-2']) ?>
 
                             <?php ActiveForm::end(); ?>
                         </div>
