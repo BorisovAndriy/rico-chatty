@@ -256,4 +256,14 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    public function actionRead()
+    {
+        return $this->render('read');
+    }
+
+    public function actionShop()
+    {
+        return $this->render('shop');
+    }
 }

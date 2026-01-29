@@ -35,18 +35,22 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+       // ['label' => 'Головна', 'url' => ['/site/index']],
+        ['label' => 'Почитати про Ріко', 'url' => ['/site/read']], // Розділ для читання
+        ['label' => 'Купити книгу', 'url' => ['/site/shop']],     // Розділ продажу
+        ['label' => 'Про автора', 'url' => ['/site/about']],
+        ['label' => 'Зв’язок', 'url' => ['/site/contact']],
     ];
+    /*
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
     }
-
+*/
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
         'items' => $menuItems,
     ]);
+    /*
     if (Yii::$app->user->isGuest) {
         echo Html::tag('div',Html::a('Login',['/site/login'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
     } else {
@@ -57,6 +61,7 @@ AppAsset::register($this);
             )
             . Html::endForm();
     }
+    */
     NavBar::end();
     ?>
 </header>
@@ -74,7 +79,7 @@ AppAsset::register($this);
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
         <p class="float-start">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-end"><?= Yii::powered() ?></p>
+        <p class="float-end">Powered by Andriy Borisov</p>
     </div>
 </footer>
 

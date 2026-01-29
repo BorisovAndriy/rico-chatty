@@ -2,51 +2,123 @@
 
 /** @var yii\web\View $this */
 
-$this->title = 'My Yii Application';
+use yii\helpers\Url;
+
+$this->title = 'Ріко-Розмовляйко — Книга для розвитку мовлення';
 ?>
 <div class="site-index">
-    <div class="p-5 mb-4 bg-transparent rounded-3">
-        <div class="container-fluid py-5 text-center">
-            <h1 class="display-4">Congratulations!</h1>
-            <p class="fs-5 fw-light">You have successfully created your Yii-powered application.</p>
-            <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
+
+    <div class="p-5 mb-5 bg-light rounded-5 text-center border-bottom shadow-sm" style="background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="container-fluid py-5">
+            <h1 class="display-3 fw-bold text-primary">Зимові пригоди Ріко-Розмовляйка 🐶</h1>
+            <p class="fs-3 text-dark mb-4">Більше ніж просто книга — це ваш домашній логопед та найкращий друг дитини.</p>
+            <p class="lead text-muted mb-5">Інтерактивна методика Тетяни Борисової, що допомагає малюкам легко та весело опанувати мистецтво мовлення через захоплюючі пригоди песика Ріко та його вірних друзів.</p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a href="<?= Url::to(['site/shop']) ?>" class="btn btn-primary btn-lg px-5 py-3 shadow">Купити книгу</a>
+                <a href="<?= Url::to(['site/read']) ?>" class="btn btn-outline-dark btn-lg px-5 py-3">Читати уривок</a>
+            </div>
         </div>
     </div>
 
     <div class="body-content">
+        <div class="row g-4">
 
-        <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary mb-3">📖 Унікальна методика</h3>
+                        <p class="card-text text-muted">Кожна сторінка — це ретельно продуманий логопедичний маршрут. Методика базується на принципах ігрової терапії, де дитина не змушена вчитися, а природно втягується в процес розвитку мовлення, допомагаючи героям казки.</p>
+                    </div>
+                </div>
             </div>
+
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-success mb-3">🗣️ Збагачення словника</h3>
+                        <p class="card-text text-muted">Ми фокусуємося на розширенні активного словникового запасу. Дитина вивчає не просто назви предметів, а вчиться описувати емоції, дії та складні природні явища, що є критично важливим у віці від 3 до 6 років.</p>
+                    </div>
+                </div>
             </div>
+
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-danger mb-3">👅 Логопедичні вправи</h3>
+                        <p class="card-text text-muted">Артикуляційна гімнастика ще ніколи не була такою цікавою! В сюжет вплетено вправи для язичка та губ, які дитина виконує разом із Ріко. Це допомагає поставити чисті звуки без нудних повторень перед дзеркалом.</p>
+                    </div>
+                </div>
             </div>
+
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-warning mb-3">🌟 Світ казкових пригод</h3>
+                        <p class="card-text text-muted">Книга перетворює процес навчання на захоплюючу подорож. Замість сухих правил дитина занурюється в цілісну історію, де кожен крок героя мотивує малюка до пізнання нового, розвитку логіки та формування власного світогляду через добру казку.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-info mb-3">🎨 Яскраві ілюстрації</h3>
+                        <p class="card-text text-muted">Візуальний ряд створений професійними художниками з урахуванням особливостей дитячого сприйняття. Велика кількість деталей стимулює зорову увагу та спонукає дитину до самостійної розповіді за картинками.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-dark mb-3">✍️ Авторський підхід</h3>
+                        <p class="card-text text-muted">Тетяна Борисова — не просто автор, а фахівець, який вклав у "Ріко-Розмовляйка" роки практичного досвіду роботи з дітьми. Кожна історія перевірена на практиці та довела свою ефективність у розвитку комунікативних навичок.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-secondary mb-3">🎓 Підготовка до школи</h3>
+                        <p class="card-text text-muted">Робота з текстом книги розвиває фонематичний слух та навички переказу. Дитина вчиться виділяти головне, відповідати на запитання та логічно мислити, що стане величезною перевагою під час навчання у школі.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary mb-3">👨‍👩‍👧‍👦 Сімейні цінності</h3>
+                        <p class="card-text text-muted">Спільне читання — це магічний час. "Ріко" пропонує запитання для обговорення, які допоможуть батькам краще зрозуміти внутрішній світ своєї дитини та побудувати міцний емоційний зв'язок через спільну гру.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-danger mb-3">🔍 Розвиток уваги</h3>
+                        <p class="card-text text-muted">Інтерактивні завдання "знайди і покажи" тренують посидючість та концентрацію. Навіть найактивніші діти залюбки занурюються у пошуки дрібних деталей на сторінках, тренуючи свій мозок у розважальній формі.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
+        <div class="mt-5 p-5 bg-dark text-white rounded-5 shadow-lg">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2 class="display-6 fw-bold mb-4">Слово автора</h2>
+                    <blockquote class="blockquote">
+                        <p class="fs-4 italic">"Моя мета — щоб кожна дитина відчула радість від спілкування. Ріко — це не просто персонаж, це місток між світом мовчання та світом яскравих слів. Почніть цю подорож сьогодні!"</p>
+                        <footer class="blockquote-footer text-info mt-2">Тетяна Борисова, <cite title="Source Title">логопед, автор книги</cite></footer>
+                    </blockquote>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="display-1">🐶</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

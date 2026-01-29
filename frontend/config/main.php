@@ -9,6 +9,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name' => 'Ріко-Розмовляйко', // <--- ДОДАЙ ЦЕЙ РЯД
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

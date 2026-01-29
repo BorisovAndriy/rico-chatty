@@ -1,25 +1,111 @@
-main > .container, main > .container-fluid
-{
-    padding: 70px 15px 20px;
+/* --- Базові налаштування та Колір Тексту --- */
+body {
+    color: #2c3e50; /* Темно-синій замість чорного для основного тексту */
 }
 
+/* Замінюємо чорні заголовки на сині */
+h1, h2, h3, h4, h5, h6, .display-4 {
+    color: #3498db !important;
+    font-weight: bold;
+}
+
+main > .container, main > .container-fluid {
+    padding: 90px 15px 20px;
+}
+
+/* --- Оновлена Навігація (Блакитно-Жовтий стиль) --- */
+.navbar {
+    background-color: #3498db !important;
+    border-bottom: 5px solid #f1c40f !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: #f1c40f !important;
+    font-weight: 800 !important;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #f1c40f !important;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+}
+
+/* Кнопка виходу (Logout) */
+.navbar form > button.logout {
+    padding: 5px 15px;
+    color: #ffffff !important;
+    background: transparent;
+    border: 2px solid #f1c40f !important;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar form > button.logout:hover {
+    background: #f1c40f !important;
+    color: #3498db !important;
+    text-decoration: none;
+}
+
+@media(max-width:767px) {
+    .navbar form > button.logout {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* --- Футер --- */
 .footer {
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
     font-size: .9em;
     height: 60px;
+    border-top: 2px solid #3498db; /* Синя лінія в футері */
+    color: #3498db;
 }
 
 .footer > .container, .footer > .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
+    line-height: 60px;
 }
 
+/* --- Текстові блоки та посилання --- */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+/* Специфічні налаштування для тексту в Shop та Contact */
+.text-dark {
+    color: #3498db !important; /* Насильно міняємо клас text-dark на синій */
+}
+
+/* --- Службові стилі Yii2 --- */
 .not-set {
     color: #c55;
     font-style: italic;
 }
 
-/* add sorting icons to gridview sort links */
+/* Сортування в GridView */
 a.asc:after, a.desc:after {
     content: '';
     left: 3px;
@@ -32,22 +118,20 @@ a.asc:after, a.desc:after {
 }
 
 a.asc:after {
-    border-bottom: solid 7px #212529;
+    border-bottom: solid 7px #3498db;
     border-top-width: 0;
 }
 
 a.desc:after {
-    border-top: solid 7px #212529;
+    border-top: solid 7px #3498db;
     border-bottom-width: 0;
 }
 
-.grid-view th,
-.grid-view td:last-child {
+.grid-view th, .grid-view td:last-child {
     white-space: nowrap;
 }
 
-.grid-view .filters input,
-.grid-view .filters select {
+.grid-view .filters input, .grid-view .filters select {
     min-width: 50px;
 }
 
@@ -65,39 +149,18 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-/* align the logout "link" (button in form) of the navbar */
-.navbar form > button.logout {
-    padding-top: 7px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-@media(max-width:767px) {
-    .navbar form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 0;
-    }
-}
-
-.navbar form > button.logout:focus,
-.navbar form > button.logout:hover {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
-}
-
-.navbar form > button.logout:focus {
-    outline: none;
-}
-
-/* style breadcrumb widget as in previous bootstrap versions */
+/* Хлібні крихти */
 .breadcrumb {
-    background-color: var(--bs-gray-200);
+    background-color: #eef2f7;
     border-radius: .25rem;
     padding: .75rem 1rem;
 }
 
-.breadcrumb-item > a
-{
+.breadcrumb-item > a {
     text-decoration: none;
+    color: #3498db;
+}
+
+.breadcrumb-item.active {
+    color: #2c3e50;
 }
