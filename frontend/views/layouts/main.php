@@ -11,79 +11,114 @@ use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
+
+// Додаємо стилі для сніжинок прямо в макет
+$this->registerCss("
+    .snow-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+    }
+    .snowflake {
+        position: fixed;
+        top: -10px;
+        color: #fff;
+        font-size: 1em;
+        user-select: none;
+        z-index: 9999;
+        text-shadow: 0 0 5px rgba(0,0,0,0.1);
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+    }
+");
+
+// Простий скрипт для генерації сніжинок
+$this->registerJs("
+    function createSnowflake() {
+        const snow = document.createElement('div');
+        snow.innerHTML = '❄';
+        snow.classList.add('snowflake');
+        snow.style.left = Math.random() * 100 + 'vw';
+        snow.style.animationDuration = Math.random() * 30 + 30 + 's';
+        snow.style.opacity = Math.random();
+        snow.style.fontSize = Math.random() * 10 + 10 + 'px';
+        
+        document.body.appendChild(snow);
+        
+        setTimeout(() => {
+            snow.remove();
+        }, 10000);
+    }
+    setInterval(createSnowflake, 1000);
+");
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" class="h-100">
-<head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-</head>
-<body class="d-flex flex-column h-100">
-<?php $this->beginBody() ?>
+    <!DOCTYPE html>
+    <html lang="<?= Yii::$app->language ?>" class="h-100">
+    <head>
+        <meta charset="<?= Yii::$app->charset ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <?php $this->registerCsrfMetaTags() ?>
+        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
+    </head>
+    <body class="d-flex flex-column h-100">
+    <?php $this->beginBody() ?>
 
-<header>
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
-        ],
-    ]);
-    $menuItems = [
-       // ['label' => 'Головна', 'url' => ['/site/index']],
-        ['label' => 'Почитати про Ріко', 'url' => ['/site/read']], // Розділ для читання
-        ['label' => 'Купити книгу', 'url' => ['/site/shop']],     // Розділ продажу
-        ['label' => 'Про автора', 'url' => ['/site/about']],
-        ['label' => 'Зв’язок', 'url' => ['/site/contact']],
-    ];
-    /*
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-    }
-*/
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
-        'items' => $menuItems,
-    ]);
-    /*
-    if (Yii::$app->user->isGuest) {
-        echo Html::tag('div',Html::a('Login',['/site/login'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
-    } else {
-        echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout text-decoration-none']
-            )
-            . Html::endForm();
-    }
-    */
-    NavBar::end();
-    ?>
-</header>
+    <header>
+        <?php
+        NavBar::begin([
+            'brandLabel' => '🐶 Ріко-Розмовляйко', // Змінив назву на бренд
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                // Замінив navbar-dark bg-dark на ваші нові класи
+                'class' => 'navbar navbar-expand-md fixed-top shadow-sm',
+            ],
+        ]);
+        $menuItems = [
+            ['label' => 'Почитати про Ріко', 'url' => ['/site/read']],
+            ['label' => 'Купити книгу', 'url' => ['/site/shop']],
+            ['label' => 'Про автора', 'url' => ['/site/about']],
+            ['label' => 'Зв’язок', 'url' => ['/site/contact']],
+        ];
 
-<main role="main" class="flex-shrink-0">
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
-</main>
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav ms-auto mb-2 mb-md-0'], // ms-auto притисне меню вправо
+            'items' => $menuItems,
+        ]);
+        NavBar::end();
+        ?>
+    </header>
 
-<footer class="footer mt-auto py-3 text-muted">
-    <div class="container">
-        <p class="float-start">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-end">Powered by Andriy Borisov</p>
-    </div>
-</footer>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
+    </main>
 
-<?php $this->endBody() ?>
-</body>
-</html>
-<?php $this->endPage();
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-primary">&copy; Ріко-Розмовляйко <?= date('Y') ?></span>
+            <span class="ms-3 text-muted">| Powered by Andriy Borisov</span>
+        </div>
+    </footer>
+
+    <?php $this->endBody() ?>
+    </body>
+    </html>
+<?php $this->endPage(); ?>
