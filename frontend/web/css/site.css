@@ -74,7 +74,7 @@ main > .container, main > .container-fluid {
     background-color: #f8f9fa;
     font-size: .9em;
     height: 60px;
-    border-top: 2px solid #3498db; /* Синя лінія в футері */
+    border-top: 2px solid #3498db;
     color: #3498db;
 }
 
@@ -94,9 +94,8 @@ a:hover {
     color: #2980b9;
 }
 
-/* Специфічні налаштування для тексту в Shop та Contact */
 .text-dark {
-    color: #3498db !important; /* Насильно міняємо клас text-dark на синій */
+    color: #3498db !important;
 }
 
 /* --- Службові стилі Yii2 --- */
@@ -105,7 +104,6 @@ a:hover {
     font-style: italic;
 }
 
-/* Сортування в GridView */
 a.asc:after, a.desc:after {
     content: '';
     left: 3px;
@@ -149,7 +147,6 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-/* Хлібні крихти */
 .breadcrumb {
     background-color: #eef2f7;
     border-radius: .25rem;
@@ -164,13 +161,14 @@ a.desc:after {
 .breadcrumb-item.active {
     color: #2c3e50;
 }
+
 /* --- Специфічний блок "Слово автора" --- */
 .author-quote-block {
-    background-color: #3498db !important; /* Фірмовий синій */
-    border-left: 10px solid #f1c40f !important; /* Жовтий акцент зліва */
+    background-color: #3498db !important;
+    border-left: 10px solid #f1c40f !important;
     color: #ffffff !important;
     transition: transform 0.3s ease;
-    border-radius: 2rem; /* Округлення як у інших блоків */
+    border-radius: 2rem;
 }
 
 .author-quote-block:hover {
@@ -178,7 +176,7 @@ a.desc:after {
 }
 
 .author-quote-block h2 {
-    color: #f1c40f !important; /* Жовтий заголовок */
+    color: #f1c40f !important;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -193,4 +191,266 @@ a.desc:after {
 
 .author-quote-block .display-1 {
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+/* --- Виправлення заголовків для SEO/Lighthouse --- */
+section h1, article h1, aside h1, nav h1 {
+    font-size: 2.5rem;
+}
+
+main section h1, .site-index h1 {
+    font-size: calc(1.5rem + 2.5vw) !important;
+}
+
+h1.display-3 {
+    font-size: calc(1.6rem + 3.5vw) !important;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* --- СТИЛІ ДЛЯ КАРТОК ПЕРЕВАГ (З В'ЮХИ) --- */
+.benefit-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 20px;
+    background: #fff;
+    padding: 2rem 1.5rem !important;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.benefit-card h3 {
+    font-size: 1.25rem !important;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333 !important; /* Перевизначаємо глобальний синій для карток */
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #6c757d !important;
+    margin-bottom: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+
+
+/* Додаткові кольори для бордерів */
+.border-purple { border-top-color: #6610f2 !important; }
+.border-orange { border-top-color: #fd7e14 !important; }
+.border-pink { border-top-color: #e83e8c !important; }
+
+/* Іконка Ріко у тексті */
+.icon-svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    margin-top: -0.2em;
+}
+
+/* Слайдер книги */
+.book-slider-container { max-width: 800px; margin: 0 auto; }
+.book-slider { background: #fdfdfd; border: 1px solid #eee; }
+.carousel-item img { height: 650px; object-fit: contain; background-color: #ffffff; }
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%; padding: 20px; filter: invert(1);
+}
+.page-badge { position: absolute; bottom: 20px; right: 20px; z-index: 10; }
+
+@media (max-width: 768px) {
+    .carousel-item img { height: 400px; }
+}
+
+/* Робимо заголовок компактнішим */
+h2, .header-text {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    font-size: 1.5rem !important;
+    /* Замість чорного — фірмовий синій */
+    color: #2c5282;
+}
+
+/* Компактні картки */
+.card-container {
+    gap: 15px !important; /* Менша відстань між картками */
+    padding: 10px !important;
+}
+
+.card {
+    padding: 15px !important;
+    min-height: auto !important; /* Прибираємо зайву висоту */
+}
+
+/* Кольорові назви блоків замість чорних */
+.card h3 {
+    font-size: 1.2rem !important;
+    margin-bottom: 8px !important;
+}
+
+/* Призначаємо кольори відповідно до іконок */
+.card:nth-child(1) h3 { color: #6b46c1; } /* Фіолетовий (Активне мовлення) */
+.card:nth-child(2) h3 { color: #2b6cb0; } /* Синій (Багатий словник) */
+.card:nth-child(3) h3 { color: #d53f8c; } /* Рожевий (Логіка та пам'ять) */
+
+/* Робимо опис дрібнішим та сірим для читабельності */
+.card p {
+    font-size: 0.9rem !important;
+    line-height: 1.3;
+    color: #4a5568;
+}
+
+/* Компактний блок з книгою */
+.book-slider {
+    max-width: 600px; /* Зменшуємо загальний масштаб */
+    margin: 0 auto;
+}
+
+/* --- Глобально: Геть чорний! --- */
+body { color: #334e68; }
+h1, h2, h3, h4 { color: #2b6cb0 !important; font-weight: 800; }
+
+/* --- 1. КАРТКИ: ІКОНКА + ФРАЗА В ОДИН РЯДОК --- */
+.benefit-card {
+    display: flex !important;
+    flex-direction: column !important; /* Контент під контентом */
+    align-items: flex-start !important; /* Вирівнювання по лівому краю */
+    padding: 12px 15px !important;
+    min-height: auto !important; /* Вбиваємо зайву висоту */
+    height: auto !important;
+    border-radius: 12px;
+    background: #fff;
+    border-top: 4px solid #3498db;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
+}
+
+/* Шапка картки: Іконка + Заголовок в ОДИН РЯДОК */
+.benefit-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px; /* Відступ від опису */
+    width: 100%;
+}
+
+.benefit-icon {
+    font-size: 1.5rem;
+    margin: 0 !important;
+    line-height: 1;
+}
+
+.benefit-card h3 {
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+    white-space: nowrap; /* Щоб фраза не розривалася */
+}
+
+/* Опис під ними (дрібніший і без чорного) */
+.benefit-card p {
+    font-size: 0.9rem !important;
+    line-height: 1.3;
+    margin: 0 !important;
+    color: #718096 !important;
+    text-align: left;
+}
+
+/* --- 2. КОЛЬОРИ ДЛЯ ЗАГОЛОВКІВ (Замість чорного) --- */
+.col-md-4:nth-child(1) .benefit-card { border-top-color: #6b46c1; }
+.col-md-4:nth-child(1) .benefit-card h3 { color: #6b46c1 !important; }
+
+.col-md-4:nth-child(2) .benefit-card { border-top-color: #2b6cb0; }
+.col-md-4:nth-child(2) .benefit-card h3 { color: #2b6cb0 !important; }
+
+.col-md-4:nth-child(3) .benefit-card { border-top-color: #d53f8c; }
+.col-md-4:nth-child(3) .benefit-card h3 { color: #d53f8c !important; }
+
+/* --- 3. МЕТОДИКА (Теж компактно в ряд) --- */
+.methodology-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ebf8ff;
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 2px solid #bee3f8;
+    margin: 10px auto;
+}
+
+.methodology-row h2 { font-size: 1.1rem !important; margin: 0 !important; }
+.methodology-row p { font-size: 1rem !important; margin: 0 !important; }
+
+/* --- РІКО: ПОВНЕ ВИДАЛЕННЯ ШАХІВНИЦІ ТА ЗАТІНЕННЯ ПО КОЛУ --- */
+.hero-rico-icon, .author-rico-clean, .hero-rico-icon-wrapper svg {
+    width: 300px;
+    height: auto;
+
+    /* Multiply робить білі/світлі клітинки прозорими на синьому фоні */
+    mix-blend-mode: multiply;
+
+    /* Підсилюємо яскравість самого пса, щоб він не став занадто темним */
+    filter: brightness(1.25) contrast(1.1) drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+
+    /* М'ЯКЕ ЗАТІНЕННЯ ПО КОЛУ (Менший радіус) */
+    /* 50% - центр (повна видимість), 75% - край (повне зникнення) */
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 70%);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 70%);
+}
+
+.author-rico-clean {
+    width: 240px !important;
+}
+
+/* Обгортка, якщо використовуєш SVG-контейнер */
+.hero-rico-icon-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    /* Важливо: тут mix-blend-mode має бути normal, щоб спрацював внутрішній фільтр */
+    mix-blend-mode: normal !important;
+}
+/* РІКО У ВЕРХНЬОМУ БАНЕРІ ТА БЛОЦІ АВТОРА */
+.hero-rico-icon, .author-rico-clean {
+    width: 300px;
+    height: auto;
+
+    /* Прибираємо накладання кольорів, робимо пса чітким */
+    mix-blend-mode: normal !important;
+    filter: brightness(1.1) contrast(1.05) drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+
+    /* СТВОРЮЄМО БІЛИЙ ФОН-КРУГ (як на нижньому скріншоті) */
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0) 70%);
+
+    /* Маскуємо краї самої картинки, щоб не вилазила шахівниця */
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 65%);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 65%);
+
+    border-radius: 50%; /* Допомагає правильно відпрацювати градієнту */
+    padding: 20px; /* Дає простір для білого світіння навколо вушок */
+}
+
+.author-rico-clean {
+    width: 240px !important;
 }

@@ -50,11 +50,36 @@ $this->registerCss("
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <meta name="google-site-verification" content="mvOMtUN8FK0Ht7yI89rc5GgK0POZ2-3BxGnE2V_3AQQ" />
+
+        <?php
+        $this->registerMetaTag([
+            'name' => 'description',
+            'content' => $this->params['meta_description'] ?? 'Зимові пригоди Ріко-Розмовляйко — інтерактивна логопедична книга для розвитку мовлення дітей від 3 до 6 років. Авторська методика Тетяни Борисової.'
+        ]);
+        $this->registerMetaTag([
+            'name' => 'keywords',
+            'content' => 'логопед, розвиток мовлення, Ріко-Розмовляйко, дитяча книга, Тетяна Борисова, вправи для дітей, логопедична казка'
+        ]);
+        ?>
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17915582728"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17915582728');
+        </script>
+
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
 
-        <link rel="icon" type="image/x-icon" href="<?= Url::to(['/favicon.ico']) ?>?v=<?= time() ?>">
-        <link rel="shortcut icon" type="image/x-icon" href="<?= Url::to(['/favicon.ico']) ?>?v=<?= time() ?>">
+        <link rel="icon" type="image/png" href="<?= Url::to(['/favicon-96x96.png']) ?>" sizes="96x96" />
+        <link rel="icon" type="image/x-icon" href="<?= Url::to(['/favicon.ico']) ?>" />
+        <link rel="shortcut icon" type="image/x-icon" href="<?= Url::to(['/favicon.ico']) ?>" />
+        <link rel="apple-touch-icon" sizes="180x180" href="<?= Url::to(['/apple-touch-icon.png']) ?>" />
+        <link rel="manifest" href="<?= Url::to(['/site.webmanifest']) ?>" />
 
         <?php $this->head() ?>
     </head>
@@ -63,10 +88,10 @@ $this->registerCss("
 
     <header>
         <?php
-        // ПОВЕРНУТО СОБАКУ: Формуємо логотип (іконка + текст)
-        $brandLabel = Html::img(Url::to(['/favicon.ico']), [
+        // Використовуємо PNG версію іконки для логотипу в меню
+        $brandLabel = Html::img(Url::to(['/favicon-96x96.png']), [
                 'class' => 'brand-logo-img',
-                'alt' => 'Rico'
+                'alt' => 'Логотип Ріко-Розмовляйко'
             ]) . 'РІКО-РОЗМОВЛЯЙКО';
 
         NavBar::begin([
@@ -74,7 +99,7 @@ $this->registerCss("
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar navbar-expand-md fixed-top shadow-sm bg-white navbar-light',
-                'style' => 'background: linear-gradient(to right, #2c8ed6, #f0ad4e);' // Додав градієнт як на скриншоті
+                'style' => 'background: linear-gradient(to right, #2c8ed6, #f0ad4e);'
             ],
         ]);
         echo Nav::widget([
