@@ -276,3 +276,129 @@ a:hover {
     color: #3498db;
     line-height: 60px;
 }
+
+/* ПРИБИРАЄМО РИСКУ ПЕРЕД КНОПКАМИ */
+.author-quote-block .blockquote-footer::before {
+    content: "" !important;
+    display: none !important;
+}
+
+/* Компактний вигляд блоку "Слово автора" без зміни HTML */
+.author-quote-block {
+    /* Перебиваємо класи p-4 та p-md-5 */
+    padding: 1.5rem 2rem !important;
+}
+
+/* Зменшуємо відступи у заголовка */
+.author-quote-block h2.h1 {
+    margin-bottom: 0.5rem !important;
+    font-size: 1.8rem !important; /* Трохи компактніше для вузького блоку */
+}
+
+/* Зменшуємо відступи у тексту цитати */
+.author-quote-block .quote-text {
+    margin-bottom: 0.8rem !important;
+    line-height: 1.4 !important; /* Щільніший текст */
+}
+
+/* Прибираємо зайвий відступ над кнопками */
+.author-quote-block .blockquote-footer {
+    margin-top: 0 !important;
+    padding-top: 10px !important;
+    border-top: none !important; /* Можна прибрати лінію для більшої чистоти */
+}
+
+/* Зменшуємо падінги для кнопок, щоб вони не розпирали блок */
+.author-quote-block .btn-lg {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+/* ==========================================================================
+   ОНОВЛЕНІ КОМПАКТНІ СТИЛІ ДЛЯ КАРТОК ТА МЕТОДИКИ
+   ========================================================================== */
+
+/* 1. Робимо картки переваг (Benefit Cards) вужчими та щільнішими */
+.benefit-card {
+    padding: 15px 20px !important; /* Зменшено з 25px 30px */
+    margin-bottom: 8px !important;
+}
+
+.benefit-header {
+    margin-bottom: 8px !important; /* Менший розрив між іконкою та текстом */
+    gap: 10px !important;
+}
+
+.benefit-icon {
+    font-size: 2.2rem !important; /* Трохи зменшуємо іконку (було 2.7) */
+}
+
+.benefit-card h3 {
+    font-size: 1.15rem !important; /* Ще компактніше */
+}
+
+.benefit-card p {
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+}
+
+/* 2. Робимо рядок методики (Methodology) компактнішим */
+.methodology-row {
+    padding: 5px 15px !important; /* Зменшено з 8px 20px */
+    margin: 5px auto !important; /* Мінімальний відступ зовні */
+    max-width: fit-content; /* Щоб блок не розтягувався на всю ширину */
+}
+
+.methodology-row h2 {
+    font-size: 1rem !important;
+}
+
+.methodology-row p {
+    font-size: 0.9rem !important;
+}
+
+/* 3. Коригування для мобільних пристроїв */
+@media (max-width: 768px) {
+    .benefit-card {
+        padding: 12px 15px !important;
+    }
+
+    .benefit-icon {
+        font-size: 1.8rem !important;
+    }
+}
+
+/* ==========================================================================
+   ОПТИМАЛЬНА ШИРИНА ТА ВИСОТА БЛОКУ
+   ========================================================================== */
+
+/* 1. Робимо блок ширшим всередині, але низьким */
+.author-quote-block {
+    padding-top: 1.2rem !important;    /* Мінімум зверху */
+    padding-bottom: 1.2rem !important; /* Мінімум знизу */
+    padding-left: 3.5rem !important;   /* Ширше зліва */
+    padding-right: 3.5rem !important;  /* Ширше справа */
+}
+
+/* 2. Коригуємо відступ від меню (золота середина) */
+main > .container, main > .container-fluid {
+    padding-top: 60px !important; /* Трохи більше ніж 45, але менше ніж 90 */
+}
+
+/* 3. Розтягуємо контент всередині, щоб він займав більше ширини */
+.author-quote-block .position-relative {
+    width: 100%;
+}
+
+/* 4. Фікс для мобілок: на малих екранах падінги треба зменшити, щоб текст не став у стовпчик */
+@media (max-width: 768px) {
+    .author-quote-block {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .author-quote-block h2.h1 {
+        font-size: 1.5rem !important;
+    }
+}

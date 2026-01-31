@@ -261,17 +261,11 @@ class SiteController extends Controller
 
     public function actionShop()
     {
-        $model = new Order();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                Yii::$app->session->setFlash('success', 'Дякуємо! Ріко вже отримав ваше замовлення, ми скоро зателефонуємо.');
-                return $this->refresh();
-            }
+        $model = new Order(); // або ваша модель замовлення
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Дякуємо за замовлення!');
+            return $this->refresh();
         }
-
-        return $this->render('shop', [
-            'model' => $model,
-        ]);
+        return $this->render('shop', ['model' => $model]);
     }
 }

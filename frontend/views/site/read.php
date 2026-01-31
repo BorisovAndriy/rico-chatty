@@ -6,34 +6,79 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 $this->title = 'Читати уривок | Ріко-Розмовляйко';
+
+// МІКРОРОЗМІТКА (SCHEMA.ORG) — ПОВЕРНУТО
+$bookSchema = [
+    "@context" => "https://schema.org",
+    "@type" => "Book",
+    "name" => "Зимові пригоди Ріко-Розмовляйко",
+    "author" => [
+        "@type" => "Person",
+        "name" => "Тетяна Борисова",
+        "jobTitle" => "Логопед"
+    ],
+    "image" => Url::to('@web/images/book/page-1.jpg', true),
+    "description" => "Ознайомтеся з уривком інтерактивної книги для розвитку мовлення. Унікальна методика від логопеда Тетяни Борисової.",
+    "genre" => "Дитяча література, Логопедія"
+];
+
+
 ?>
 
+<script type="application/ld+json">
+<?= json_encode($bookSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
+</script>
+
 <main class="site-read">
-
-    <header class="read-hero-header shadow-lg">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center d-none d-md-block">
-                    <?= Html::img(Url::to(['/favicon.svg']), ['class' => 'read-rico-icon', 'alt' => 'Rico icon']) ?>
-                </div>
-
-                <div class="col-md-8 text-center text-md-start">
-                    <article class="poem-body" style="font-size: 1.6rem; line-height: 1.6; color: #ffffff; font-family: 'Georgia', serif; font-style: italic;">
-                        <p class="mb-2">Ріко-Розмовляйко з нами зимоньку вітає,</p>
-                        <p class="mb-2">Він спілкуватись любить, в очі заглядає,</p>
-                        <p class="mb-2">Хоче все побачить, хоче все почути —</p>
-                        <p class="mb-0 fw-bold text-warning">Ріко-Розмовляйко розумним хоче бути.</p>
-                    </article>
-
-                </div>
+    <!--
+    <section class="mt-5 p-5 author-quote-block shadow-lg rounded-5">
+        <div class="row align-items-center position-relative" style="z-index: 2;">
+            <div class="col-md-3 text-center mt-3 mt-md-0">
+                <?= Html::img(Url::to(['/favicon.svg']), ['class' => 'author-rico-clean', 'alt' => 'Rico mascot']) ?>
             </div>
-        </div>
-        <div style="position: absolute; top: -30px; right: -30px; font-size: 15rem; opacity: 0.1; color: white; pointer-events: none; z-index: 1;">🐾</div>
-    </header>
+            <div class="col-md-8">
 
-    <div class="container py-5">
+                <h3 class="h1 fw-bold mb-5 text-warning">Зимові пригоди Ріко-Розмовляйко</h3>
+
+                <blockquote class="blockquote">
+                    <div class="col-md-9 text-center text-md-start">
+                        <article class="poem-body" style="font-size: 1.6rem; line-height: 1.6; color: #ffffff; font-family: 'Georgia', serif; font-style: italic;">
+                            <p class="mb-2">Ріко-Розмовляйко з нами зимоньку вітає,</p>
+                            <p class="mb-2">Він спілкуватись любить, в очі заглядає,</p>
+                            <p class="mb-2">Хоче все побачить, хоче все почути —</p>
+                            <p class="mb-0 fw-bold text-warning">Ріко-Розмовляйко розумним хоче бути.</p>
+                        </article>
+                    </div>
+                </blockquote>
+            </div>
+
+        </div>
+        <div style="position: absolute; bottom: -20px; right: -20px; font-size: 15rem; opacity: 0.1; color: white; pointer-events: none; z-index: 1;">🐾</div>
+    </section>
+    -->
+
+    <section class="mt-5 p-4 p-md-5 author-quote-block shadow-lg rounded-5 overflow-hidden position-relative">
+        <div class="position-relative" style="z-index: 2;">
+            <!--
+            <h2 class="h1 fw-bold mb-4 text-warning text-center text-md-start">Ріко-Розмовляйко з нами зимоньку вітає,</h2>
+            -->
+            <blockquote class="blockquote">
+                <article class="poem-body" style="font-size: 1.6rem; line-height: 1.6; color: #ffffff; font-family: 'Georgia', serif; font-style: italic; padding-left: 25%">
+                    <p class="mb-2">Ріко-Розмовляйко з нами зимоньку вітає,</p>
+                    <p class="mb-2">Він спілкуватись любить, в очі заглядає,</p>
+                    <p class="mb-2">Хоче все побачить, хоче все почути —</p>
+                    <p class="mb-0 fw-bold text-warning">Ріко-Розмовляйко розумним хоче бути.</p>
+                </article>
+                <footer class="blockquote-footer mt-2 text-center text-md-start">
+                    <h3 class="h1 fw-bold mb-4 text-warning float-md-end"> <?= Html::a('Купити книгу 🐾', ['site/shop'], ['class' => 'btn btn-warning btn-lg px-5 py-3 shadow rounded-pill fw-bold']) ?></h3>
+                </footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-11">
+            <div class="col-lg-12">
 
                 <div class="book-slider-container mb-5">
                     <div id="bookCarousel" class="carousel slide shadow-lg rounded-4 overflow-hidden border" data-bs-ride="false">
@@ -41,7 +86,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                             <?php for ($i = 1; $i <= 47; $i++): ?>
                                 <div class="carousel-item <?= $i === 1 ? 'active' : '' ?>">
                                     <?= Html::img(["/images/book/page-{$i}.jpg"], ['class' => 'd-block w-100', 'alt' => "Сторінка {$i}"]) ?>
-                                    <div class="page-badge">
+                                    <div class="page-badge" style="position: absolute; bottom: 10px; left: 10px; z-index: 10;">
                                         <span class="badge bg-warning text-dark px-3 py-2 fs-6 shadow">Стор. <?= $i ?></span>
                                     </div>
                                 </div>
@@ -58,7 +103,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
 
                 <div class="row g-4 mt-5">
                     <div class="col-md-4">
-                        <div class="benefit-card border-primary shadow-sm">
+                        <div class="benefit-card border-primary shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">🗣️</span>
                                 <h3>Активне мовлення</h3>
@@ -67,7 +112,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-success shadow-sm">
+                        <div class="benefit-card border-success shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">📚</span>
                                 <h3>Багатий словник</h3>
@@ -76,7 +121,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-danger shadow-sm">
+                        <div class="benefit-card border-danger shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">🧠</span>
                                 <h3>Логіка та пам'ять</h3>
@@ -85,7 +130,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-warning shadow-sm">
+                        <div class="benefit-card border-warning shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">🌈</span>
                                 <h3>Емоційний інтелект</h3>
@@ -94,7 +139,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-info shadow-sm">
+                        <div class="benefit-card border-info shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">🎨</span>
                                 <h3>Зорова увага</h3>
@@ -103,7 +148,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-primary shadow-sm">
+                        <div class="benefit-card border-primary shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">💎</span>
                                 <h3>Чиста вимова</h3>
@@ -112,7 +157,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-purple shadow-sm">
+                        <div class="benefit-card border-purple shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">🎓</span>
                                 <h3>Шкільна готовність</h3>
@@ -121,7 +166,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-orange shadow-sm">
+                        <div class="benefit-card border-orange shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">✍️</span>
                                 <h3>Моторика рук</h3>
@@ -130,7 +175,7 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="benefit-card border-pink shadow-sm">
+                        <div class="benefit-card border-pink shadow-sm h-100">
                             <div class="benefit-header">
                                 <span class="benefit-icon">👨‍👩‍👧</span>
                                 <h3>Час разом</h3>
@@ -139,15 +184,25 @@ $this->title = 'Читати уривок | Ріко-Розмовляйко';
                         </div>
                     </div>
                 </div>
-
-                <div class="mt-5 p-5 text-center cta-footer-block shadow-lg">
-                    <p class="mb-4 text-white fs-2 fw-bold">Сподобався уривок?</p>
-                    <?= Html::a('КУПИТИ КНИГУ 🐾', ['site/shop'], [
-                        'class' => 'btn btn-warning btn-lg px-5 shadow rounded-pill fw-bold py-3',
-                        'style' => 'font-size: 1.5rem;'
-                    ]) ?>
-                </div>
-
+<!--
+                <section class="mt-5 p-5 author-quote-block shadow-lg rounded-5">
+                    <div class="row align-items-center position-relative" style="z-index: 2;">
+                        <div class="col-md-8">
+                            <h2 class="h1 fw-bold mb-4 text-warning">Сподобався уривок?</h2>
+                            <blockquote class="blockquote">
+                                <?= Html::a('КУПИТИ КНИГУ 🐾', ['site/shop'], [
+                                    'class' => 'btn btn-warning btn-lg px-5 shadow rounded-pill fw-bold py-3',
+                                    'style' => 'font-size: 1.5rem;'
+                                ]) ?>
+                            </blockquote>
+                        </div>
+                        <div class="col-md-4 text-center mt-4 mt-md-0">
+                            <?= Html::img(Url::to(['/favicon.svg']), ['class' => 'author-rico-clean', 'alt' => 'Rico mascot']) ?>
+                        </div>
+                    </div>
+                    <div style="position: absolute; bottom: -20px; right: -20px; font-size: 15rem; opacity: 0.1; color: white; pointer-events: none; z-index: 1;">🐾</div>
+                </section>
+-->
             </div>
         </div>
     </div>
