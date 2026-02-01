@@ -12,37 +12,6 @@ use yii\bootstrap5\NavBar;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-
-$this->registerCss("
-    .brand-logo-img {
-        width: 35px;
-        height: 35px;
-        margin-right: 10px;
-        vertical-align: middle;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    main > .container { padding-top: 100px; }
-    
-    .footer .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        flex-wrap: wrap;
-        font-size: 0.9rem;
-    }
-    .footer-divider { color: #dee2e6; margin: 0 4px; }
-    .footer-link { 
-        text-decoration: none; 
-        color: #212529; 
-        font-weight: 600; 
-    }
-    .footer-link:hover { 
-        text-decoration: underline; 
-        color: #0d6efd; 
-    }
-");
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -128,7 +97,7 @@ $this->registerCss("
             <span class="text-primary fw-bold">🐾 Ріко-Розмовляйко <?= date('Y') ?></span>
             <span class="footer-divider">|</span>
             <span class="text-muted">Powered by:
-            <a href="mailto:borisovandriy@gmail.com" class="footer-link">BorisovAndriy@gmail.com</a>
+            <a href="mailto:borisovandriy@gmail.com" class="footer-link">BorisovAndriy</a>
         </span>
         </div>
     </footer>

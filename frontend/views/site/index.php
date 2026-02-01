@@ -5,77 +5,51 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
-$this->title = 'Ріко-Розмовляйко — Книга для розвитку мовлення';
-$this->registerCss("
-    .site-index { padding-top: 0 !important; }
-    .hero-banner { 
-        margin-top: 0 !important; 
-        border-radius: 0 0 80px 80px !important; 
-        padding: 80px 0 !important;
-        background: linear-gradient(180deg, #2b6cb0 0%, #1a365d 100%);
-    }
-    .hero-rico-icon {
-        width: 140px;
-        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
-    }
-    
-    /* НОВІ СТИЛІ ДЛЯ ВИПРАВЛЕННЯ РОЗМІРУ */
-    .author-rico-clean {
-        width: 100%;
-        max-width: 300px; /* Максимальний розмір для десктопа */
-        height: auto;
-    }
+$this->title = 'Ріко-Розмовляйко — Інтерактивна книга для розвитку мовлення дітей';
 
-    @media (max-width: 768px) {
-        .author-rico-clean {
-            max-width: 150px; /* Зменшуємо Ріко на мобільних */
-            margin-bottom: 20px;
-        }
-        .author-quote-block {
-            padding: 2rem !important; /* Трохи менше падінгів на мобільних */
-        }
-    }
-");
-
-
-// Виправляємо відступ зверху, щоб баннер прилип до меню
-// Стилі для ідеального прилягання та округлення низу
-$this->registerCss("
-    .site-index { padding-top: 0 !important; }
-    .hero-banner { 
-        margin-top: 0 !important; 
-        border-radius: 0 0 80px 80px !important; /* Робимо низ реально напівкруглим */
-        padding: 80px 0 !important;
-        background: linear-gradient(180deg, #2b6cb0 0%, #1a365d 100%);
-    }
-    .hero-rico-icon {
-        width: 140px;
-        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
-    }
-");
-
-// Meta Description
+// SEO Мета-теги
 $this->registerMetaTag([
     'name' => 'description',
     'content' => 'Інтерактивна книга «Зимові пригоди Ріко-Розмовляйко» від логопеда Тетяни Борисової. Унікальна методика розвитку мовлення для дітей 3-6 років через гру та казку.'
 ]);
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => 'Ріко-Розмовляйко, логопедична книга, розвиток мовлення, Тетяна Борисова, дитяча книга, вправи для мовлення, логопед онлайн'
+]);
 
-// Мікророзмітка
+// Open Graph для соцмереж
+$this->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+$this->registerMetaTag(['property' => 'og:description', 'content' => 'Ваш домашній логопед у форматі захоплюючої казки. Допоможіть дитині заговорити чітко та впевнено!']);
+$this->registerMetaTag(['property' => 'og:image', 'content' => Url::to('@web/images/book/page-1.jpg', true)]);
+$this->registerMetaTag(['property' => 'og:url', 'content' => Url::to(['site/index'], true)]);
+$this->registerMetaTag(['property' => 'og:type', 'content' => 'website']);
+
+// МІКРОРОЗМІТКА (SCHEMA.ORG)
 $bookSchema = [
     "@context" => "https://schema.org",
     "@type" => "Book",
     "name" => "Зимові пригоди Ріко-Розмовляйко",
+    "alternateName" => "Ріко-Розмовляйко",
     "author" => [
         "@type" => "Person",
         "name" => "Тетяна Борисова",
-        "jobTitle" => "Логопед"
+        "jobTitle" => "Логопед",
+        "url" => Url::to(['site/index'], true)
     ],
-    "image" => Url::to('@web/favicon-96x96.png', true),
-    "description" => "Інтерактивна книга «Зимові пригоди Ріко-Розмовляйко» від логопеда Тетяни Борисової. Унікальна методика розвитку мовлення для дітей 3-6 років через гру та казку.",
+    "image" => Url::to('@web/images/book/page-1.jpg', true),
+    "description" => "Інтерактивна книга для розвитку мовлення для дітей 3-6 років. Унікальна методика через гру та казку.",
     "genre" => "Дитяча література, Логопедія",
+    "inLanguage" => "uk-UA",
     "audience" => [
         "@type" => "Audience",
         "audienceType" => "Діти від 3 до 6 років"
+    ],
+    "offers" => [
+        "@type" => "Offer",
+        "price" => "600",
+        "priceCurrency" => "UAH",
+        "availability" => "https://schema.org/InStock",
+        "url" => Url::to(['site/shop'], true)
     ]
 ];
 ?>

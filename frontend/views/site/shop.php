@@ -4,81 +4,69 @@
 /** @var common\models\Order $model */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 use himiklab\yii2\recaptcha\ReCaptcha2;
 
-$this->title = 'Замовити книгу — Ріко-Розмовляйко';
+$this->title = 'Купити логопедичну книгу Ріко-Розмовляйко | Замовити онлайн';
 
-$this->registerCss("
-    .site-shop { padding-top: 0 !important; background-color: #fcfcfd; }
-    .success-message-card {
-        background: #fff;
-        border-top: 5px solid #198754 !important;
-        border-radius: 30px;
-        padding: 40px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-    .benefit-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 25px;
-        height: 100%;
-        transition: 0.3s ease;
-        border: 1px solid #e2e8f0;
-        border-top-width: 5px !important;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    }
-    .benefit-card:hover { transform: translateY(-7px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-    .benefit-header { display: flex; align-items: center; margin-bottom: 15px; gap: 15px; }
-    .benefit-icon { font-size: 2rem; }
-    .benefit-card h3 { font-size: 1.2rem; font-weight: 700; margin: 0; }
-    .benefit-card p { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin: 0; }
+// SEO & Social Tags
+$this->registerMetaTag(['name' => 'description', 'content' => 'Замовляйте інтерактивну логопедичну книгу "Зимові пригоди Ріко-Розмовляйко". Авторська методика Тетяни Борисової. Ціна: 600 грн.']);
+$this->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+$this->registerMetaTag(['property' => 'og:description', 'content' => 'Інтерактивна логопедична казка для дітей 3-6 років. Доставка по Україні.']);
+$this->registerMetaTag(['property' => 'og:image', 'content' => Url::to('@web/images/book/page-1.jpg', true)]);
+$this->registerMetaTag(['property' => 'og:type', 'content' => 'product']);
 
-    .border-primary { border-top-color: #0d6efd !important; }
-    .border-primary h3 { color: #0d6efd; }
-    .border-success { border-top-color: #198754 !important; }
-    .border-success h3 { color: #198754; }
-    .border-danger { border-top-color: #dc3545 !important; }
-    .border-danger h3 { color: #dc3545; }
-    .border-warning { border-top-color: #ffc107 !important; }
-    .border-warning h3 { color: #ffc107; }
-    .border-info { border-top-color: #0dcaf0 !important; }
-    .border-info h3 { color: #0dcaf0; }
-    .border-dark { border-top-color: #212529 !important; }
-    .border-dark h3 { color: #212529; }
-");
+// МІКРОРОЗМІТКА (SCHEMA.ORG)
+$bookSchema = [
+    "@context" => "https://schema.org",
+    "@type" => "Book",
+    "name" => "Зимові пригоди Ріко-Розмовляйко",
+    "author" => [
+        "@type" => "Person",
+        "name" => "Тетяна Борисова",
+        "jobTitle" => "Логопед"
+    ],
+    "image" => Url::to('@web/images/book/page-1.jpg', true),
+    "description" => "Інтерактивна книга для розвитку мовлення. Унікальна методика від логопеда Тетяни Борисової.",
+    "genre" => "Дитяча література, Логопедія",
+    "offers" => [
+        "@type" => "Offer",
+        "price" => "600",
+        "priceCurrency" => "UAH",
+        "availability" => "https://schema.org/InStock",
+        "url" => Url::current([], true)
+    ]
+];
 ?>
+
+<script type="application/ld+json">
+<?= json_encode($bookSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
+</script>
 
 <main class="site-shop pb-5">
     <div class="container pt-4">
 
         <?php if (Yii::$app->session->hasFlash('success')): ?>
-            <?php
-            // Показуємо наше гарне повідомлення
-            // І ОДРАЗУ видаляємо флеш, щоб він не дублювався зверху в Layout
-            Yii::$app->session->removeFlash('success');
-            ?>
+            <?php Yii::$app->session->removeFlash('success'); ?>
             <div class="row justify-content-center mb-5 mt-4">
                 <div class="col-lg-8 text-center">
                     <div class="success-message-card">
                         <div class="display-1 mb-4">🐾</div>
                         <h2 class="fw-bold text-success mb-3">Дякуємо! Ваше замовлення прийнято!</h2>
-                        <p class="lead text-dark mb-4">
-                            Наш менеджер вже отримав сповіщення і незабаром <strong>зв'яжеться з вами</strong>
-                            за вказаним номером телефону для підтвердження деталей.
-                        </p>
-                        <div class="alert alert-success rounded-pill d-inline-block px-5">
-                            Будь ласка, очікуйте на дзвінок. Ріко вже готує вашу книжку! ✨
-                        </div>
+                        <p class="lead text-dark mb-4">Наш менеджер вже зв'яжеться з вами незабаром.</p>
+                        <div class="alert alert-success rounded-pill d-inline-block px-5">Ріко вже готує вашу книжку! ✨</div>
                     </div>
                 </div>
             </div>
         <?php else: ?>
             <div class="row g-5 align-items-center mb-5">
                 <div class="col-lg-4 text-center">
-                    <?= Html::img('@web/images/book/page-1.jpg', ['class' => 'img-fluid rounded-4 shadow-lg']) ?>
+                    <?= Html::img('@web/images/book/page-1.jpg', [
+                        'class' => 'img-fluid rounded-4 shadow-lg',
+                        'alt' => 'Обкладинка книги Ріко-Розмовляйко'
+                    ]) ?>
                 </div>
                 <div class="col-lg-8">
                     <div class="shop-card-clean border-top border-5 border-primary p-4 bg-white rounded-5 shadow-sm">
@@ -86,13 +74,31 @@ $this->registerCss("
                             <div class="display-4 fw-bold text-primary mb-4 float-md-end">600 <small class="fs-4 text-muted">грн</small></div>
                         </h2>
 
+                        <div style="clear: both;"></div>
 
                         <?php $form = ActiveForm::begin(['id' => 'order-phone-form']); ?>
-                        <?= $form->field($model, 'name')->textInput(['placeholder' => "Ваше ім'я", 'class' => 'form-control rounded-pill mb-2'])->label(false) ?>
-                        <?= $form->field($model, 'phone')->textInput(['placeholder' => 'Ваш номер телефону', 'class' => 'form-control rounded-pill mb-2'])->label(false) ?>
-                        <?= $form->field($model, 'comment')->textarea(['placeholder' => 'Адреса (Місто, № НП)', 'class' => 'form-control rounded-4 mb-3'])->label(false) ?>
-                        <?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::class)->label(false) ?>
-                        <?= Html::submitButton('Замовити книгу 🐾', ['class' => 'btn btn-primary btn-lg w-100 rounded-pill']) ?>
+
+                        <?= $form->field($model, 'name')->textInput(['placeholder' => "Як до Вас звертатись?", 'class' => 'form-control rounded-pill'])->label(false) ?>
+
+                        <?= $form->field($model, 'phone')->widget(MaskedInput::class, [
+                            'mask' => '+38 (099) 999-99-99',
+                            'options' => [
+                                'class' => 'form-control rounded-pill',
+                                'placeholder' => '+38 (0__) ___-__-__',
+                            ],
+                            'clientOptions' => [
+                                'clearIncomplete' => true,
+                            ]
+                        ])->label(false) ?>
+
+                        <?= $form->field($model, 'comment')->textarea(['placeholder' => 'Коментарій, побажання, № НП або поштомата', 'class' => 'form-control rounded-4'])->label(false) ?>
+
+                        <div class="text-center d-flex justify-content-center">
+                            <?= $form->field($model, 'reCaptcha', ['options' => ['class' => 'field-order-recaptcha m-0']])->widget(ReCaptcha2::class)->label(false) ?>
+                        </div>
+
+                        <?= Html::submitButton('Замовити книгу 🐾', ['class' => 'btn btn-primary btn-lg w-100 rounded-pill btn-order-animated mt-3']) ?>
+
                         <?php ActiveForm::end(); ?>
                     </div>
                 </div>

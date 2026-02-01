@@ -7,53 +7,13 @@ use yii\helpers\Url;
 
 $this->title = 'Про автора та методику | Тетяна Борисова';
 
+// SEO & Meta
+$this->registerMetaTag(['name' => 'description', 'content' => 'Дізнайтеся про методику Тетяни Борисової — логопеда-практика та автора серії «Ріко-Розмовляйко». Професійний підхід до розвитку дитини.']);
+$this->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+$this->registerMetaTag(['property' => 'og:image', 'content' => Url::to('@web/images/book/page-1.jpg', true)]);
+
 $this->registerCss("
-    .site-about { padding-top: 0 !important; background-color: #fcfcfd; }
-    
-    /* Головний синій банер з округленим низом (як на головній) */
-    .hero-banner { 
-        margin-top: 0 !important; 
-        border-radius: 0 0 80px 80px !important; 
-        padding: 80px 0 !important;
-        background: linear-gradient(180deg, #2b6cb0 0%, #1a365d 100%);
-        color: white;
-    }
 
-    /* Картки переваг по аналогії з index/shop */
-    .benefit-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 25px;
-        height: 100%;
-        transition: 0.3s ease;
-        border: 1px solid #e2e8f0;
-        border-top-width: 5px !important;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    }
-    .benefit-card:hover { transform: translateY(-7px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-    .benefit-header { display: flex; align-items: center; margin-bottom: 15px; gap: 15px; }
-    .benefit-icon { font-size: 2rem; }
-    .benefit-card h3 { font-size: 1.2rem; font-weight: 700; margin: 0; }
-    .benefit-card p { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin: 0; }
-
-    /* Кольорові класи для рамок */
-    .border-primary { border-top-color: #0d6efd !important; }
-    .border-success { border-top-color: #198754 !important; }
-    .border-danger { border-top-color: #dc3545 !important; }
-    .border-warning { border-top-color: #ffc107 !important; }
-    .border-info { border-top-color: #0dcaf0 !important; }
-    .border-dark { border-top-color: #212529 !important; }
-    .border-secondary { border-top-color: #6c757d !important; }
-
-    /* Стиль нижнього блоку цитати */
-    .quote-section {
-        background: #fff;
-        border-radius: 30px;
-        border-left: 10px solid #0d6efd;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
 ");
 
 // Підготовка даних мікророзмітки (твій оригінал)
@@ -95,17 +55,6 @@ $authorSchema = [
             </blockquote>
         </div>
     </section>
-<!--
-    <section class="hero-banner text-center mb-5 shadow-sm">
-        <div class="container py-4">
-            <h1 class="display-4 fw-bold text-white mb-3" style="font-size: calc(1.5rem + 3vw);">Тетяна Борисова</h1>
-            <p class="lead text-white mx-auto px-3 fst-italic opacity-90" style="max-width: 800px; font-size: 1.25rem;">
-                Логопед-практик, авторка серії книг «Ріко-Розмовляйко» та розробниця унікальної методики ігрового розвитку мовлення для дітей дошкільного віку.
-            </p>
-            <hr class="w-25 mx-auto border-light border-2 opacity-50">
-        </div>
-    </section>
--->
     <div class="container pb-5">
         <div class="row g-4">
 
@@ -200,14 +149,6 @@ $authorSchema = [
             </div>
 
         </div>
-<!--
-        <section class="my-5 p-5 quote-section text-center">
-            <blockquote class="blockquote mb-0">
-                <p class="h3 fst-italic text-dark mb-4">"Мова дитини — це ключ до її майбутнього. Давайте відкриємо цей світ разом."</p>
-                <footer class="blockquote-footer mt-2 fw-bold text-primary" style="font-size: 1.2rem;">Тетяна Борисова</footer>
-            </blockquote>
-        </section>
-        -->
 
         <section class="mt-5 p-4 p-md-5 author-quote-block shadow-lg rounded-5 overflow-hidden position-relative">
             <div class="position-relative" style="z-index: 2;">

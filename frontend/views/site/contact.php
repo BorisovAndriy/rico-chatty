@@ -8,48 +8,7 @@ use yii\helpers\Url;
 $this->title = 'Про автора та методику | Тетяна Борисова';
 
 $this->registerCss("
-    .site-about { padding-top: 0 !important; background-color: #fcfcfd; }
-    
-    .hero-banner { 
-        margin-top: 0 !important; 
-        border-radius: 0 0 80px 80px !important; 
-        padding: 80px 0 !important;
-        background: linear-gradient(180deg, #2b6cb0 0%, #1a365d 100%);
-        color: white;
-    }
 
-    .benefit-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 25px;
-        height: 100%;
-        transition: 0.3s ease;
-        border: 1px solid #e2e8f0;
-        border-top-width: 5px !important;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    }
-    .benefit-card:hover { transform: translateY(-7px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-    .benefit-header { display: flex; align-items: center; margin-bottom: 15px; gap: 15px; }
-    .benefit-icon { font-size: 2rem; }
-    .benefit-card h3 { font-size: 1.2rem; font-weight: 700; margin: 0; }
-    .benefit-card p { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin: 0; }
-
-    .border-primary { border-top-color: #0d6efd !important; }
-    .border-success { border-top-color: #198754 !important; }
-    .border-danger { border-top-color: #dc3545 !important; }
-    .border-warning { border-top-color: #ffc107 !important; }
-    .border-info { border-top-color: #0dcaf0 !important; }
-    .border-dark { border-top-color: #212529 !important; }
-    .border-secondary { border-top-color: #6c757d !important; }
-
-    .quote-section {
-        background: #fff;
-        border-radius: 30px;
-        border-left: 10px solid #0d6efd;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
 ");
 
 $authorSchema = [

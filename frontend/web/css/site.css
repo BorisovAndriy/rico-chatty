@@ -1,50 +1,40 @@
 /* ==========================================================================
-   1. БАЗОВІ НАЛАШТУВАННЯ ТА ГЛОБАЛЬНІ КОЛЬОРИ
+   1. ГЛОБАЛЬНІ СТИЛІ ТА СКИДАННЯ (RESET)
    ========================================================================== */
 body {
-    color: #334e68; /* Глобально: Геть чорний! */
-    background-color: #ffffff;
+    color: #334e68;
+    background-color: #fcfcfd;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
 }
 
-/* Замінюємо чорні заголовки на фірмовий синій */
 h1, h2, h3, h4, h5, h6, .display-4, .display-5 {
     color: #2b6cb0 !important;
     font-weight: 800;
 }
 
-/* Виправлення відступів під фіксовану шапку */
+a { color: #3498db; text-decoration: none; transition: 0.3s; }
+a:hover { color: #2980b9; }
+
+/* Відступи: 80px — ідеальний баланс під фіксоване меню */
 main > .container, main > .container-fluid {
-    padding-top: 90px;
-    padding-bottom: 20px;
+    padding-top: 80px;
+    padding-bottom: 30px;
 }
 
-/* Прибираємо дірку для сторінок з Hero-банерами (головна та читати) */
-.site-read, .site-index {
+/* Сторінки з Hero-банерами притискаються до меню без дірок */
+.site-read, .site-index, .site-shop, .site-about {
     padding-top: 0 !important;
 }
 
-a {
-    color: #3498db;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #2980b9;
-}
-
-.text-dark {
-    color: #3498db !important;
-}
-
 /* ==========================================================================
-   2. НАВІГАЦІЯ (Блакитно-Жовтий стиль)
+   2. НАВІГАЦІЯ (Яскраві кнопки)
    ========================================================================== */
 .navbar {
     background-color: #3498db !important;
     border-bottom: 5px solid #f1c40f !important;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 10px 0 !important;
 }
 
 .navbar-brand {
@@ -52,353 +42,180 @@ a:hover {
     font-weight: 800 !important;
     font-size: 1.4rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+}
+
+.brand-logo-img {
+    width: 35px; height: 35px; margin-right: 10px;
+    border-radius: 50%; object-fit: cover; vertical-align: middle;
 }
 
 .navbar-nav .nav-link {
-    color: #ffffff !important;
-    font-weight: 500;
-    margin: 0 5px;
-    transition: all 0.3s ease;
+    font-weight: 800 !important;
+    margin: 5px 8px !important;
+    padding: 8px 18px !important;
+    border-radius: 50px !important;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
-    color: #f1c40f !important;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-}
+/* Кольори пунктів меню */
+.navbar-nav .nav-item:nth-child(1) .nav-link { background: #ccff00 !important; color: #1a365d !important; }
+.navbar-nav .nav-item:nth-child(2) .nav-link { background: #ff9800 !important; color: #fff !important; }
+.navbar-nav .nav-item:nth-child(3) .nav-link { background: #00d2ff !important; color: #1a365d !important; }
+.navbar-nav .nav-item:last-child .nav-link  { background: #f1c40f !important; color: #2b6cb0 !important; border: 2px solid #fff; }
 
-/* Кнопка Logout */
-.navbar form > button.logout {
-    padding: 5px 15px;
-    color: #ffffff !important;
-    background: transparent;
-    border: 2px solid #f1c40f !important;
-    border-radius: 20px;
-    font-weight: bold;
-    margin-left: 10px;
-    transition: all 0.3s ease;
-}
-
-.navbar form > button.logout:hover {
-    background: #f1c40f !important;
-    color: #3498db !important;
-}
+.navbar-nav .nav-link:hover { transform: scale(1.05); background: #fff !important; color: #3498db !important; }
 
 /* ==========================================================================
-   3. СИНІ БЛОКИ (HERO / READ / QUOTE / CTA)
+   3. HERO БЛОКИ ТА ЦИТАТИ (Синій градієнт)
    ========================================================================== */
-.hero-banner, .read-hero-header, .author-quote-block, .cta-footer-block {
+.hero-banner, .read-hero-header, .author-quote-block {
     background: linear-gradient(135deg, #2b6cb0 0%, #1a365d 100%) !important;
-    border-left: 12px solid #f1c40f !important;
-    color: #ffffff !important; /* Робимо текст білим */
+    color: #fff !important;
     position: relative;
     overflow: hidden;
 }
 
-/* ВИПРАВЛЕННЯ ВИДИМОСТІ: Робимо заголовки в синіх блоках білими, щоб не зливались */
-.hero-banner h1, .hero-banner h2,
-.read-hero-header h1, .read-hero-header h2,
-.cta-footer-block p, .author-quote-block blockquote p {
-    color: #ffffff !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Легка тінь для чіткості */
-}
-
-/* Стиковка з меню (без дірок) + Напівкруглий низ (бордер зверху пофікшено через site-index) */
 .hero-banner, .read-hero-header {
-    margin-top: 0 !important;
-    border-radius: 0 0 80px 80px !important; /* Збільшено радіус для ефекту */
-    padding: 80px 40px !important;
+    border-radius: 0 0 80px 80px !important;
+    padding: 80px 0 !important;
+    text-align: center;
 }
 
 .author-quote-block {
-    transition: transform 0.3s ease;
+    border-left: 12px solid #f1c40f !important;
     border-radius: 2rem;
-    padding: 3rem !important;
+    padding: 1.5rem 3.5rem !important;
+    transition: transform 0.3s ease;
 }
 
-.author-quote-block:hover {
-    transform: translateY(-5px);
-}
-
-.author-quote-block h2 {
-    color: #f1c40f !important; /* "Слово автора" залишаємо жовтим */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.author-quote-block .blockquote-footer {
-    color: rgba(255, 255, 255, 0.8) !important;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    padding-top: 15px;
-    font-weight: bold;
-}
-
-.author-quote-block .blockquote-footer cite {
-    color: #f1c40f !important;
-}
+.author-quote-block h2 { color: #f1c40f !important; font-size: 1.8rem !important; margin-bottom: 0.5rem !important; }
+.author-quote-block .quote-text { line-height: 1.4 !important; margin-bottom: 0.8rem !important; }
+.author-quote-block .blockquote-footer { border: none !important; padding: 0 !important; color: rgba(255,255,255,0.8) !important; }
+.author-quote-block .blockquote-footer::before { content: "" !important; display: none !important; }
 
 /* ==========================================================================
-   4. КАРТКИ ПЕРЕВАГ (Компактні в один рядок + Великі у в'юхах)
+   4. КАРТКИ ПЕРЕВАГ (BENEFIT CARDS)
    ========================================================================== */
 .benefit-card {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 25px 30px !important;
-    border-radius: 20px;
     background: #fff;
-    height: 100% !important;
-    border: none !important;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    margin-bottom: 10px;
-}
-
-.benefit-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
-}
-
-/* Шапка картки: Іконка + Заголовок */
-.benefit-header {
+    border-radius: 20px;
+    padding: 15px 20px !important;
+    height: 100%;
     display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 12px;
-    width: 100%;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    border-top: 5px solid #0d6efd !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    transition: 0.3s ease;
 }
 
-.benefit-icon {
-    font-size: 2.7rem;
-    line-height: 1;
-}
+.benefit-card:hover { transform: translateY(-7px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
 
-.benefit-card h3 {
-    font-size: 1.3rem !important; /* Зменшено на 30% (було 1.7) */
-    margin: 0 !important;
-    font-weight: 700;
-    line-height: 1.2;
-}
+.benefit-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.benefit-icon { font-size: 2.2rem; }
+.benefit-card h3 { font-size: 1.15rem !important; font-weight: 700; margin: 0 !important; }
+.benefit-card p { font-size: 0.95rem !important; line-height: 1.4; color: #64748b !important; margin: 0 !important; }
 
-.benefit-card p {
-    font-size: 1.05rem !important; /* Зменшено на 30% (було 1.4) */
-    line-height: 1.5;
-    color: #4a5568 !important;
-    margin: 0 !important;
-    text-align: left;
-}
-
-/* Кольори для бордерів та заголовків */
-.border-primary { border-top: 4px solid #0d6efd !important; } .border-primary h3 { color: #0d6efd !important; }
-.border-success { border-top: 4px solid #198754 !important; } .border-success h3 { color: #198754 !important; }
-.border-danger { border-top: 4px solid #dc3545 !important; } .border-danger h3 { color: #dc3545 !important; }
-.border-warning { border-top: 4px solid #f59e0b !important; } .border-warning h3 { color: #f59e0b !important; }
-.border-info { border-top: 4px solid #0dcaf0 !important; } .border-info h3 { color: #0dcaf0 !important; }
-.border-purple { border-top: 4px solid #6610f2 !important; } .border-purple h3 { color: #6610f2 !important; }
-.border-orange { border-top: 4px solid #fd7e14 !important; } .border-orange h3 { color: #fd7e14 !important; }
-.border-pink { border-top: 4px solid #e83e8c !important; } .border-pink h3 { color: #e83e8c !important; }
-.border-secondary { border-top: 4px solid #6c757d !important; } .border-secondary h3 { color: #6c757d !important; }
-.border-dark { border-top: 4px solid #2d3748 !important; } .border-dark h3 { color: #2d3748 !important; }
+/* Кольори бордерів для карток */
+.border-primary   { border-top-color: #0d6efd !important; }
+.border-success   { border-top-color: #198754 !important; }
+.border-danger    { border-top-color: #dc3545 !important; }
+.border-warning   { border-top-color: #ffc107 !important; }
+.border-info      { border-top-color: #0dcaf0 !important; }
+.border-secondary { border-top-color: #6c757d !important; }
+.border-dark      { border-top-color: #212529 !important; }
 
 /* ==========================================================================
-   5. МЕТОДИКА ТА СПЕЦІАЛЬНІ РЯДКИ
+   5. МЕТОДИКА ТА СПЕЦІАЛЬНІ ЕЛЕМЕНТИ
    ========================================================================== */
 .methodology-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: #ebf8ff;
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: 2px solid #bee3f8;
-    margin: 10px auto;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: #ebf8ff; padding: 5px 15px !important;
+    border-radius: 50px; border: 2px solid #bee3f8;
+    margin: 5px auto !important; max-width: fit-content;
 }
 
-.methodology-row h2 { font-size: 1.1rem !important; margin: 0 !important; color: #2b6cb0 !important; }
-.methodology-row p { font-size: 1rem !important; margin: 0 !important; color: #2c5282 !important; }
+.methodology-row h2 { font-size: 1rem !important; color: #2b6cb0 !important; margin: 0 !important; }
+.methodology-row p  { font-size: 0.9rem !important; color: #2c5282 !important; margin: 0 !important; }
 
-/* ==========================================================================
-   6. РІКО: ОФОРМЛЕННЯ ТА АНІМАЦІЯ
-   ========================================================================== */
+/* Анімація Ріко */
 .hero-rico-icon, .author-rico-clean, .read-rico-icon {
-    width: 300px;
-    height: auto;
-    mix-blend-mode: normal !important;
-    filter: brightness(1.1) contrast(1.05) drop-shadow(0 8px 15px rgba(0,0,0,0.3));
+    width: 100%; max-width: 140px; height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
     animation: rico-bounce 3s infinite ease-in-out;
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0) 70%);
-    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 65%);
-    mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 65%);
-    border-radius: 50%;
-    padding: 20px;
 }
-
-.author-rico-clean { width: 240px !important; }
-.read-rico-icon { width: 190px !important; }
+.author-rico-clean { max-width: 280px; }
 
 @keyframes rico-bounce {
-    0%, 100% { transform: translateY(0) rotate(0); }
-    50% { transform: translateY(-10px) rotate(3deg); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px) rotate(2deg); }
 }
 
 /* ==========================================================================
-   7. СЛАЙДЕР ТА КНИГА
+   6. ФОРМА ТА ВАЛІДАЦІЯ (БАБЛИ)
    ========================================================================== */
-.book-slider-container { max-width: 900px; margin: 0 auto; }
-.carousel-item img { height: 700px; object-fit: contain; background-color: #f8f9fa; }
-
-.carousel-control-prev-icon, .carousel-control-next-icon {
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 50%;
-    padding: 20px;
-    filter: invert(1);
-    scale: 1.2;
+.field-order-name, .field-order-phone, .field-order-comment, .field-order-recaptcha {
+    position: relative; margin-top: 25px !important;
 }
 
+.help-block-error, .invalid-feedback, .has-error .help-block {
+    display: block !important; position: absolute; top: -22px; left: 15px;
+    background: #e63946; color: #fff !important; font-size: 0.7rem !important;
+    padding: 2px 10px; border-radius: 6px; z-index: 10; white-space: nowrap;
+}
+
+.has-error .help-block::after {
+    content: ''; position: absolute; bottom: -4px; left: 10px; width: 8px; height: 8px;
+    background: #e63946; transform: rotate(45deg);
+}
+
+.has-error input, .has-error textarea { border: 2px solid #e63946 !important; background: #fff8f8 !important; }
+
+/* ==========================================================================
+   7. КНОПКИ ТА ЕФЕКТИ БЛИСКУ
+   ========================================================================== */
+.btn-warning, .btn-order-animated {
+    position: relative; overflow: hidden; font-weight: 800;
+    transition: 0.3s; z-index: 1; border-radius: 50px;
+}
+
+.btn-order-animated {
+    background: linear-gradient(180deg, #3498db 0%, #2980b9 100%) !important;
+    color: #fff !important; padding: 12px 30px; border: none !important;
+    box-shadow: 0 4px 0 #1d6fa5 !important;
+}
+
+.btn-warning {
+    background: linear-gradient(180deg, #ffeb3b 0%, #f1c40f 100%) !important;
+    box-shadow: 0 3px 0 #b7950b !important; color: #1a365d !important;
+}
+
+.btn-warning:hover, .btn-order-animated:hover { transform: scale(1.03) translateY(-2px); }
+
+/* Ефект Glare (Блиск) */
+.btn-warning::after, .btn-order-animated::after {
+    content: ""; position: absolute; top: -50%; left: -100%; width: 40%; height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(30deg); transition: 0.6s; z-index: 2; pointer-events: none;
+}
+.btn-warning:hover::after, .btn-order-animated:hover::after { left: 150%; }
+
+/* ==========================================================================
+   8. АДАПТИВНІСТЬ ТА ФУТЕР
+   ========================================================================== */
 @media (max-width: 768px) {
-    .carousel-item img { height: 400px; }
-    .benefit-card h3 { font-size: 1.1rem !important; } /* Теж -30% */
-    .benefit-card p { font-size: 0.9rem !important; } /* Теж -30% */
-    .hero-banner, .read-hero-header { padding: 40px 20px !important; }
-    .hero-rico-icon { width: 200px; }
+    .hero-banner, .read-hero-header { padding: 40px 20px !important; border-radius: 0 0 40px 40px !important; }
+    .author-quote-block { padding: 1.5rem !important; }
+    .author-rico-clean { max-width: 150px; }
+    .benefit-card { padding: 12px 15px !important; }
 }
 
-/* ==========================================================================
-   8. СЛУЖБОВІ ТА SEO СТИЛІ
-   ========================================================================== */
 .footer {
-    background-color: #f8f9fa;
-    height: 60px;
-    border-top: 2px solid #3498db;
-    color: #3498db;
-    line-height: 60px;
+    background: #f8f9fa; border-top: 2px solid #3498db;
+    height: 60px; line-height: 60px; font-size: 0.9rem;
 }
-
-/* ПРИБИРАЄМО РИСКУ ПЕРЕД КНОПКАМИ */
-.author-quote-block .blockquote-footer::before {
-    content: "" !important;
-    display: none !important;
-}
-
-/* Компактний вигляд блоку "Слово автора" без зміни HTML */
-.author-quote-block {
-    /* Перебиваємо класи p-4 та p-md-5 */
-    padding: 1.5rem 2rem !important;
-}
-
-/* Зменшуємо відступи у заголовка */
-.author-quote-block h2.h1 {
-    margin-bottom: 0.5rem !important;
-    font-size: 1.8rem !important; /* Трохи компактніше для вузького блоку */
-}
-
-/* Зменшуємо відступи у тексту цитати */
-.author-quote-block .quote-text {
-    margin-bottom: 0.8rem !important;
-    line-height: 1.4 !important; /* Щільніший текст */
-}
-
-/* Прибираємо зайвий відступ над кнопками */
-.author-quote-block .blockquote-footer {
-    margin-top: 0 !important;
-    padding-top: 10px !important;
-    border-top: none !important; /* Можна прибрати лінію для більшої чистоти */
-}
-
-/* Зменшуємо падінги для кнопок, щоб вони не розпирали блок */
-.author-quote-block .btn-lg {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-}
-/* ==========================================================================
-   ОНОВЛЕНІ КОМПАКТНІ СТИЛІ ДЛЯ КАРТОК ТА МЕТОДИКИ
-   ========================================================================== */
-
-/* 1. Робимо картки переваг (Benefit Cards) вужчими та щільнішими */
-.benefit-card {
-    padding: 15px 20px !important; /* Зменшено з 25px 30px */
-    margin-bottom: 8px !important;
-}
-
-.benefit-header {
-    margin-bottom: 8px !important; /* Менший розрив між іконкою та текстом */
-    gap: 10px !important;
-}
-
-.benefit-icon {
-    font-size: 2.2rem !important; /* Трохи зменшуємо іконку (було 2.7) */
-}
-
-.benefit-card h3 {
-    font-size: 1.15rem !important; /* Ще компактніше */
-}
-
-.benefit-card p {
-    font-size: 0.95rem !important;
-    line-height: 1.4 !important;
-}
-
-/* 2. Робимо рядок методики (Methodology) компактнішим */
-.methodology-row {
-    padding: 5px 15px !important; /* Зменшено з 8px 20px */
-    margin: 5px auto !important; /* Мінімальний відступ зовні */
-    max-width: fit-content; /* Щоб блок не розтягувався на всю ширину */
-}
-
-.methodology-row h2 {
-    font-size: 1rem !important;
-}
-
-.methodology-row p {
-    font-size: 0.9rem !important;
-}
-
-/* 3. Коригування для мобільних пристроїв */
-@media (max-width: 768px) {
-    .benefit-card {
-        padding: 12px 15px !important;
-    }
-
-    .benefit-icon {
-        font-size: 1.8rem !important;
-    }
-}
-
-/* ==========================================================================
-   ОПТИМАЛЬНА ШИРИНА ТА ВИСОТА БЛОКУ
-   ========================================================================== */
-
-/* 1. Робимо блок ширшим всередині, але низьким */
-.author-quote-block {
-    padding-top: 1.2rem !important;    /* Мінімум зверху */
-    padding-bottom: 1.2rem !important; /* Мінімум знизу */
-    padding-left: 3.5rem !important;   /* Ширше зліва */
-    padding-right: 3.5rem !important;  /* Ширше справа */
-}
-
-/* 2. Коригуємо відступ від меню (золота середина) */
-main > .container, main > .container-fluid {
-    padding-top: 60px !important; /* Трохи більше ніж 45, але менше ніж 90 */
-}
-
-/* 3. Розтягуємо контент всередині, щоб він займав більше ширини */
-.author-quote-block .position-relative {
-    width: 100%;
-}
-
-/* 4. Фікс для мобілок: на малих екранах падінги треба зменшити, щоб текст не став у стовпчик */
-@media (max-width: 768px) {
-    .author-quote-block {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
-    }
-
-    .author-quote-block h2.h1 {
-        font-size: 1.5rem !important;
-    }
-}
+.footer .container { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+.footer-link { font-weight: 600; color: #212529; }
+.footer-link:hover { color: #0d6efd; text-decoration: underline; }
