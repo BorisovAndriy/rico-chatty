@@ -1,176 +1,206 @@
 <?php
 
 /** @var yii\web\View $this */
-/** @var yii\widgets\ActiveForm $form */
-/** @var common\models\Order $model */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
-use himiklab\yii2\recaptcha\ReCaptcha2;
+use yii\helpers\Html;
 
-$this->title = 'Замовити книгу — Ріко-Розмовляйко';
+$this->title = 'Ріко-Розмовляйко — Книга для розвитку мовлення';
+$this->registerCss("
+    .site-index { padding-top: 0 !important; }
+    .hero-banner { 
+        margin-top: 0 !important; 
+        border-radius: 0 0 80px 80px !important; 
+        padding: 80px 0 !important;
+        background: linear-gradient(180deg, #2b6cb0 0%, #1a365d 100%);
+    }
+    .hero-rico-icon {
+        width: 140px;
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    }
+    
+    /* НОВІ СТИЛІ ДЛЯ ВИПРАВЛЕННЯ РОЗМІРУ */
+    .author-rico-clean {
+        width: 100%;
+        max-width: 300px; /* Максимальний розмір для десктопа */
+        height: auto;
+    }
 
-// МІКРОРОЗМІТКА ДЛЯ МАГАЗИНУ (Product)
-$shopSchema = [
+    @media (max-width: 768px) {
+        .author-rico-clean {
+            max-width: 150px; /* Зменшуємо Ріко на мобільних */
+            margin-bottom: 20px;
+        }
+        .author-quote-block {
+            padding: 2rem !important; /* Трохи менше падінгів на мобільних */
+        }
+    }
+");
+
+
+// Виправляємо відступ зверху, щоб баннер прилип до меню
+// Стилі для ідеального прилягання та округлення низу
+$this->registerCss("
+    .site-index { padding-top: 0 !important; }
+    .hero-banner { 
+        margin-top: 0 !important; 
+        border-radius: 0 0 80px 80px !important; /* Робимо низ реально напівкруглим */
+        padding: 80px 0 !important;
+        background: linear-gradient(180deg, #2b6cb0 0%, #1a365d 100%);
+    }
+    .hero-rico-icon {
+        width: 140px;
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    }
+");
+
+// Meta Description
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'Інтерактивна книга «Зимові пригоди Ріко-Розмовляйко» від логопеда Тетяни Борисової. Унікальна методика розвитку мовлення для дітей 3-6 років через гру та казку.'
+]);
+
+// Мікророзмітка
+$bookSchema = [
     "@context" => "https://schema.org",
-    "@type" => "Product",
+    "@type" => "Book",
     "name" => "Зимові пригоди Ріко-Розмовляйко",
-    "image" => Url::to('@web/images/book/page-1.jpg', true),
-    "description" => "Інтерактивна книга для розвитку мовлення від логопеда Тетяни Борисової.",
-    "brand" => [
-        "@type" => "Brand",
-        "name" => "Ріко-Розмовляйко"
+    "author" => [
+        "@type" => "Person",
+        "name" => "Тетяна Борисова",
+        "jobTitle" => "Логопед"
     ],
-    "offers" => [
-        "@type" => "Offer",
-        "url" => Url::current([], true),
-        "priceCurrency" => "UAH",
-        "price" => "600",
-        "availability" => "https://schema.org/InStock",
-        "itemCondition" => "https://schema.org/NewCondition"
+    "image" => Url::to('@web/favicon-96x96.png', true),
+    "description" => "Інтерактивна книга «Зимові пригоди Ріко-Розмовляйко» від логопеда Тетяни Борисової. Унікальна методика розвитку мовлення для дітей 3-6 років через гру та казку.",
+    "genre" => "Дитяча література, Логопедія",
+    "audience" => [
+        "@type" => "Audience",
+        "audienceType" => "Діти від 3 до 6 років"
     ]
 ];
-
-$this->registerCss("
-    .site-shop { padding-top: 0 !important; background-color: #fcfcfd; }
-    
-    .contact-nav-capsule {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 50px;
-        padding: 8px 20px;
-        display: inline-flex;
-        gap: 25px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-    .contact-nav-capsule a { color: #475569; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; }
-
-    .shop-card-clean {
-        background: #ffffff;
-        border-radius: 40px;
-        padding: 40px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.04);
-    }
-    .price-display { font-size: 4rem; font-weight: 900; color: #1e40af; letter-spacing: -2px; }
-    .input-round {
-        background: #f8fafc !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 50px !important;
-        padding: 15px 25px !important;
-        font-size: 1rem !important;
-        margin-bottom: 5px !important;
-    }
-    .btn-order-main {
-        background: #2563eb;
-        color: white;
-        border-radius: 50px;
-        padding: 18px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border: none;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-
-    .benefit-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 25px;
-        height: 100%;
-        transition: 0.3s ease;
-        border: 1px solid #e2e8f0;
-        border-top-width: 6px !important;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-        display: flex;
-        flex-direction: column;
-    }
-    .benefit-card:hover { transform: translateY(-7px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-    .benefit-header { display: flex; align-items: center; margin-bottom: 15px; gap: 15px; }
-    .benefit-icon { font-size: 2rem; }
-    .benefit-card h3 { font-size: 1.2rem; font-weight: 700; margin: 0; }
-    .benefit-card p { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin: 0; }
-
-    .border-primary { border-top-color: #3b82f6 !important; }
-    .border-primary h3 { color: #3b82f6; }
-    .border-success { border-top-color: #10b981 !important; }
-    .border-success h3 { color: #10b981; }
-    .border-danger { border-top-color: #ef4444 !important; }
-    .border-danger h3 { color: #ef4444; }
-    .border-warning { border-top-color: #f59e0b !important; }
-    .border-warning h3 { color: #f59e0b; }
-    .border-info { border-top-color: #0dcaf0 !important; }
-    .border-info h3 { color: #0dcaf0; }
-    .border-dark { border-top-color: #1e293b !important; }
-    .border-dark h3 { color: #1e293b; }
-");
 ?>
 
 <script type="application/ld+json">
-<?= json_encode($shopSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
+<?= json_encode($bookSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
 </script>
 
-<main class="site-shop pb-5">
-    <div class="container pt-4">
-        <div class="text-center mb-5">
-            <div class="contact-nav-capsule">
-                <a href="tel:+380632140037">📞 063 214 00 37</a>
-                <a href="tel:+380973725849">📱 097 372 58 49</a>
-            </div>
+<main class="site-index">
+
+    <section class="mt-5 p-4 p-md-5 author-quote-block shadow-lg rounded-5 overflow-hidden position-relative">
+        <div class="position-relative" style="z-index: 2;">
+            <h2 class="h1 fw-bold mb-4 text-warning text-center text-md-start">Зимові пригоди Ріко-Розмовляйко</h2>
+            <blockquote class="blockquote">
+                <p class="fs-3 fst-italic text-white mb-4 fw-light quote-text" style="line-height: 1.6;">
+                    Більше ніж просто книга — це ваш домашній логопед та найкращий друг дитини.
+                </p>
+                <footer class="blockquote-footer mt-2 text-center text-md-start">
+                    <?= Html::a('Купити книгу 🐾', ['site/shop'], ['class' => 'btn btn-warning btn-lg px-5 py-3 shadow rounded-pill fw-bold']) ?>
+                    <?= Html::a('Читати уривок', ['site/read'], ['class' => 'btn btn-outline-light btn-lg px-5 py-3 rounded-pill']) ?>
+                </footer>
+            </blockquote>
         </div>
+    </section>
 
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-5 text-center">
-                <?= Html::img('@web/images/book/page-1.jpg', ['class' => 'img-fluid rounded-4 shadow-lg']) ?>
-            </div>
+    <div class="container py-5">
+        <h2 class="text-center mb-5 fw-bold display-5">Чому батьки обирають Ріко?</h2>
 
-            <div class="col-lg-6">
-                <div class="shop-card-clean border-top border-5 border-primary">
-                    <h2 class="fw-bold text-dark mb-1">Видання від автора</h2>
-                    <div class="price-display mb-4">600 <small class="fs-4 text-muted">грн</small></div>
-
-                    <div class="order-box">
-                        <p class="fw-bold mb-3 text-secondary">Швидка заявка</p>
-                        <?php $form = ActiveForm::begin(['id' => 'order-phone-form']); ?>
-                        <?= $form->field($model, 'name')->textInput(['placeholder' => "Ваше ім'я", 'class' => 'form-control input-round'])->label(false) ?>
-                        <?= $form->field($model, 'phone')->textInput(['class' => 'form-control input-round', 'placeholder' => 'Ваш номер телефону'])->label(false) ?>
-                        <?= $form->field($model, 'comment')->textarea(['placeholder' => 'Адреса (Місто, № Нової пошти)', 'rows' => 2, 'class' => 'form-control input-round', 'style' => 'border-radius: 20px !important; resize: none;'])->label(false) ?>
-                        <div class="captcha-container text-center my-3">
-                            <?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::class)->label(false) ?>
-                        </div>
-                        <?= Html::submitButton('Замовити книгу 🐾', ['class' => 'btn btn-order-main w-100 shadow-sm']) ?>
-                        <?php ActiveForm::end(); ?>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-primary shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">📖</div>
+                        <h3>Унікальна методика</h3>
                     </div>
-                </div>
+                    <p>Кожна сторінка — це ретельно продуманий логопедичний маршрут, що базується на принципах ігрової терапії.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-success shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">🗣️</div>
+                        <h3>Збагачення словника</h3>
+                    </div>
+                    <p>Ми фокусуємося на розширенні активного запасу слів. Дитина вчиться описувати дії та емоції природно.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-danger shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">👅</div>
+                        <h3>Логопедичні вправи</h3>
+                    </div>
+                    <p>Артикуляційна гімнастика вплетена в сюжет! Вправи для язичка виконуються разом із Ріко без нудьги.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-warning shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">🌟</div>
+                        <h3>Світ пригод</h3>
+                    </div>
+                    <p>Замість сухих правил — захоплююча подорож. Кожен крок героя мотивує малюка до пізнання нового.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-info shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">🎨</div>
+                        <h3>Яскраві ілюстрації</h3>
+                    </div>
+                    <p>Візуальний ряд створений художниками спеціально для дітей. Деталі стимулюють зорову увагу та мову.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-dark shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">✍️</div>
+                        <h3>Авторський підхід</h3>
+                    </div>
+                    <p>Тетяна Борисова вклала роки практики. Кожна історія перевірена досвідом і довела свою ефективність.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-danger shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">🔍</div>
+                        <h3>Розвиток уваги</h3>
+                    </div>
+                    <p>Завдання "знайди і покажи" тренують посидючість та здатність малюка концентруватися на деталях.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-secondary shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">🎓</div>
+                        <h3>Підготовка до школи</h3>
+                    </div>
+                    <p>Робота з текстом розвиває фонематичний слух та навички логічного мислення й переказу.</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <article class="benefit-card border-primary shadow-sm">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">👨‍👩‍👧‍👦</div>
+                        <h3>Сімейні цінності</h3>
+                    </div>
+                    <p>Спільне читання зміцнює зв'язок між батьками та дитиною через спільні емоції та обговорення.</p>
+                </article>
             </div>
         </div>
 
-        <div class="row g-4 mt-5">
-            <?php
-            $benefits = [
-                ['🚚', 'Швидка доставка', 'Відправка в день замовлення Новою Поштою.', 'border-primary'],
-                ['📚', 'Тверда обкладинка', 'Якісний перепліт гарантує довговічність.', 'border-success'],
-                ['✨', 'Преміальний папір', 'Щільні сторінки, які приємно гортати малюкам.', 'border-danger'],
-                ['🎁', 'Подарунковий вигляд', 'Готовий і корисний подарунок до будь-якого свята.', 'border-warning'],
-                ['👩‍🏫', 'Авторський контроль', 'Купівля напряму в автора гарантує оригінальність.', 'border-info'],
-                ['📦', 'Надійне пакування', 'Дбайливо загортаємо кожну книгу.', 'border-dark'],
-                ['✅', 'Перевірена якість', 'Відповідає логопедичним нормам.', 'border-danger'],
-                ['💬', 'Прямий діалог', 'Консультація автора щодо методики.', 'border-success'],
-                ['🎨', 'Унікальний дизайн', 'Ексклюзивні ілюстрації для розвитку мовлення.', 'border-primary']
-            ];
-
-            foreach ($benefits as $b): ?>
-                <div class="col-lg-4 col-md-6">
-                    <article class="benefit-card <?= $b[3] ?> shadow-sm">
-                        <div class="benefit-header">
-                            <div class="benefit-icon"><?= $b[0] ?></div>
-                            <h3><?= $b[1] ?></h3>
-                        </div>
-                        <p><?= $b[2] ?></p>
-                    </article>
-                </div>
-            <?php endforeach; ?>
-        </div>
+        <section class="mt-5 p-4 p-md-5 author-quote-block shadow-lg rounded-5 overflow-hidden position-relative">
+            <div class="position-relative" style="z-index: 2;">
+                <h2 class="h1 fw-bold mb-4 text-warning text-center text-md-start">Слово автора</h2>
+                <blockquote class="blockquote">
+                    <p class="fs-3 fst-italic text-white mb-4 fw-light quote-text" style="line-height: 1.6;">
+                        "Моя мета — щоб кожна дитина відчула радість від спілкування. Ріко — це персонаж, що допоможе провести міст між світом мовчання та світом яскравих слів."
+                    </p>
+                    <footer class="blockquote-footer mt-2 text-center text-md-start">
+                        <span class="text-white fw-bold">Тетяна Борисова</span>,
+                        <cite title="Source Title" class="text-white opacity-75">логопед, автор книги</cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </section>
     </div>
 </main>
